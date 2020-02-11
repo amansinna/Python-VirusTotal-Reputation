@@ -1,0 +1,8 @@
+Script usage: python vturl.py [input file]
+
+Couple notes:
+1.	You also still need to have the csv module. This uses the same shell as the other VT script I wrote you, so in your input file can have leading/trailing spaces or newlines, it won’t matter. I don’t do any input validation on whether the line is a proper URL or domain, however, since it’s kind of pointless to do so here. 
+2.	As discussed, VT will pull an existing scan report for the URL if it has it; if it doesn’t the script will request a new scan (see pic above). It’ll wait 20 seconds to let VT finish scanning (up to 3 times for a total of one minute) before giving up and moving on. If you’d like to modify the counts just change the 3 in line 56: “result = vt_url_lookup(url, 3)” to something else, or if you want each iteration of waiting to be different change in the 20 in line 32: “time.sleep(20)” to something else. Kind of just took a guess here, probably depends on the site to be scanned.
+3.	If you want a script that forces a new scan and returns those results, let me know and we can make a different one for that purpose.
+4.	Filename will include yearmonth_24hrtime, so feel free to run it multiple times even with the old data file open – it will create a new file as long as a minute has passed.
+5.	Last column “Errors” should generally be empty, but if something goes wrong an explanation will be there instead of stopping the script. Some are meant to be user friendly – like HTTP 404 or similar, other times may be raw error output from Python and not very friendly. Let me know if you need help deciphering
