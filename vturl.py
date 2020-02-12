@@ -10,13 +10,13 @@ if len(sys.argv) != 2:
         sys.exit()
 
 url_list = sys.argv[1]
-api_key = "29932dea25c8bf9c9dc1b712c746eba6f3617d697e1d4372e31b1290e48d8380"
+api_key = ""
 
 def vt_url_lookup(url, tries): #tries = number of recursions allowed (20 sec wait in between)
         if tries == 0:
                 return {"valid":False, "error_msg":"Max tries exceeded"}
         tries -= 1
-        api_key = "29932dea25c8bf9c9dc1b712c746eba6f3617d697e1d4372e31b1290e48d8380"
+        api_key = ""
         params = {"apikey":api_key, "resource":url, "scan":"1", "allinfo":"true"}
         try:
                 response = requests.post('https://www.virustotal.com/vtapi/v2/url/report', params=params)
@@ -160,7 +160,7 @@ with open('url_results_' + time.strftime("%Y%m%d_%H%M") + '.csv', 'w', newline =
                                                 priorityCount = " {}/{}".format(priorityCount, "11")
                                                 
                                                 #A/AAAA Record Data
-                                                #apikey= "29932dea25c8bf9c9dc1b712c746eba6f3617d697e1d4372e31b1290e48d8380"
+                                                #apikey= ""
                                                 url3 = 'https://www.virustotal.com/vtapi/v2/domain/report'
                                                 #parameters = {'domain': serverName, 'apikey': apikey}
                                                 params = {'ip': resolved_IP, 'apikey': api_key}
